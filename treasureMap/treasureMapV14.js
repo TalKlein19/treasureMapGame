@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"treasureMapV14_atlas_", frames: [[1466,811,479,277],[1970,0,32,32],[0,1363,300,201],[1699,1090,225,300],[288,896,471,167],[504,1234,197,300],[1466,0,502,502],[962,0,502,502],[504,594,300,300],[703,1478,300,134],[1166,1392,300,156],[302,1536,294,118],[0,1234,502,127],[0,594,502,296],[1466,504,502,305],[962,504,502,501],[761,1176,201,300],[761,1007,471,167],[964,1176,200,300],[1234,1090,232,300],[0,892,286,300],[1468,1090,229,300],[288,1065,471,167],[1468,1392,300,143],[0,0,960,592]]}
+		{name:"treasureMapV14_atlas_", frames: [[1466,811,479,277],[1970,0,32,32],[761,1176,300,201],[1699,1090,225,300],[288,1065,471,167],[202,1363,197,300],[1466,0,502,502],[962,0,502,502],[504,594,300,300],[1311,1392,300,134],[707,1379,300,156],[1613,1392,294,118],[0,1234,502,127],[0,594,502,296],[1466,504,502,305],[962,504,502,501],[504,1234,201,300],[761,1007,471,167],[0,1363,200,300],[1234,1090,232,300],[0,892,286,300],[1468,1090,229,300],[288,896,471,167],[1009,1392,300,143],[0,0,960,592]]}
 ];
 
 
@@ -7050,6 +7050,13 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 			pauseLaod.y = 30;
 			pauseLaod.name = "myPause";
 			pauseLaod.addEventListener("click", pausedFunc);
+			pauseLaod.addEventListener("mouseover", function () {
+				pauseLaod.cursor = "pointer";
+			});
+			pauseLaod.addEventListener("mouseout", function () {
+				pauseLoad.cursor = "context-menu";
+			});
+			stage.addChild(pauseLaod);
 		
 			var playerLoad = new lib.playerLIB(); //העלאת שחקן
 			playerLoad.name = "myPlayer";
@@ -7619,24 +7626,25 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 			bigImage.y = stageH / 2 + 80;
 			bigImage.name = "bigImage";
 			stage.addChild(bigImage);
-			
+		
 			scaleBound = 0; //שינוי מרווח בין התמונה למסגרת שלה
 			var picBigLocation = evt.currentTarget.name.charAt(0); //זיהוי על פי שם באיזה תא גדול במערך נמצאת התמונה עליה לחצו (מתאים או לא מתאים לקטגוריה)
 			var picSmallLocation = evt.currentTarget.name.charAt(1); //זיהוי על פי שם באיזה תא קטן במערך נמצאת התמונה עליה לחצו (איזו אפשרות מהתשובות הקיימות)
-			
+		
 			var bigAnswerPIC = new myEndGame[picBigLocation][picSmallLocation][0](); //העלאת תמונה לפי המיקום במערך
-			
+		
 			bigAnswerPIC.scaleX = picSizeFunc(bigImage.endBigAnswerSpace, bigAnswerPIC); //התאמת גודל התמונה לגודל המסגרת
 			bigAnswerPIC.scaleY = picSizeFunc(bigImage.endBigAnswerSpace, bigAnswerPIC);
 			bigImage.addChild(bigAnswerPIC);
-			
+		
 			bigImage.addEventListener("pressmove", dragFunc); //הוספת אפשרות לגרירה
 			bigImage.addEventListener("pressup", releaseFunc); //שחרור אובייקט מגרירה
 			hasBigImage = true; //הצהרה כי יש תמונה גדולה על המסך
-			
+		
 			var closeBTN = new lib.endXbtnLIB(); //העלאת כפתור סגירה לתמונה
 			closeBTN.x = -269;
 			closeBTN.y = -168;
+			closeBTN.name = "endCloseBTN";
 			closeBTN.addEventListener("click", function () { //אירוע לחיצה על כפתור הסגירה
 				stage.removeChild(bigImage); //הסרת האובייקט
 			});
@@ -7667,6 +7675,8 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 			stage.removeChild(stage.getChildByName("separatorLine")); //הסרת קו מפריד בין עמודות
 			stage.removeChild(stage.getChildByName("newGameBTN")); //הסרת כפתור סיום
 			stage.removeChild(stage.getChildByName("restartGameBTN")); //הסרת כפתור התחל מחדש 
+			stage.removeChild(stage.getChildByName("bigImage")); //הסרת תמונה גדולה במידה ונשארה פתוחה בלחיצה על כפתור
+			stage.removeChild(stage.getChildByName("endCloseBTN")); //הסרת כפתור הסגירה במידה ונשארה תמונה גדולה פתוחה בלחיצה על אחד מהכפתורים
 		}
 	}
 
@@ -7692,12 +7702,12 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/treasureMapV14_atlas_.png?1517912559869", id:"treasureMapV14_atlas_"},
-		{src:"sounds/rightSound.mp3?1517912560719", id:"rightSound"},
-		{src:"sounds/wrongSoundwav.mp3?1517912560719", id:"wrongSoundwav"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1517912560719", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1517912560719", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1517912560719", id:"an.ComboBox"}
+		{src:"images/treasureMapV14_atlas_.png?1517927041772", id:"treasureMapV14_atlas_"},
+		{src:"sounds/rightSound.mp3?1517927042806", id:"rightSound"},
+		{src:"sounds/wrongSoundwav.mp3?1517927042806", id:"wrongSoundwav"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1517927042806", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1517927042806", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/combobox.js?1517927042806", id:"an.ComboBox"}
 	],
 	preloads: []
 };
