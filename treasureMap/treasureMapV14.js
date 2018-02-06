@@ -7050,7 +7050,6 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 			pauseLaod.y = 30;
 			pauseLaod.name = "myPause";
 			pauseLaod.addEventListener("click", pausedFunc);
-			stage.addChild(pauseLaod);
 		
 			var playerLoad = new lib.playerLIB(); //העלאת שחקן
 			playerLoad.name = "myPlayer";
