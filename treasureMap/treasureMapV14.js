@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"treasureMapV14_atlas_", frames: [[1466,811,479,277],[1970,0,32,32],[761,1176,300,201],[1699,1090,225,300],[288,1065,471,167],[202,1363,197,300],[1466,0,502,502],[962,0,502,502],[504,594,300,300],[1311,1392,300,134],[707,1379,300,156],[1613,1392,294,118],[0,1234,502,127],[0,594,502,296],[1466,504,502,305],[962,504,502,501],[504,1234,201,300],[761,1007,471,167],[0,1363,200,300],[1234,1090,232,300],[0,892,286,300],[1468,1090,229,300],[288,896,471,167],[1009,1392,300,143],[0,0,960,592]]}
+		{name:"treasureMapV14_atlas_", frames: [[1466,811,479,277],[1970,0,32,32],[941,1176,300,201],[714,1065,225,300],[0,892,471,167],[1648,1219,197,300],[1466,0,502,502],[962,0,502,502],[504,594,300,300],[604,1367,300,134],[0,1367,300,156],[906,1379,294,118],[1419,1090,502,127],[0,594,502,296],[1466,504,502,305],[962,504,502,501],[1243,1219,201,300],[473,896,471,167],[1446,1219,200,300],[249,1065,232,300],[0,1061,247,300],[483,1065,229,300],[946,1007,471,167],[302,1367,300,143],[0,0,960,592]]}
 ];
 
 
@@ -151,7 +151,7 @@ lib.ssMetadata = [
 
 
 
-(lib.shaulMofaz = function() {
+(lib.shaulMofazF = function() {
 	this.spriteSheet = ss["treasureMapV14_atlas_"];
 	this.gotoAndStop(20);
 }).prototype = p = new cjs.Sprite();
@@ -259,13 +259,13 @@ p.nominalBounds = null;
 	this.initialize(mode,startPosition,loop,{});
 
 	// Layer_1
-	this.instance = new lib.shaulMofaz();
+	this.instance = new lib.shaulMofazF();
 	this.instance.parent = this;
-	this.instance.setTransform(-143,-150);
+	this.instance.setTransform(-131,-149);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.shaulMofazLIB, new cjs.Rectangle(-143,-150,286,300), null);
+}).prototype = getMCSymbolPrototype(lib.shaulMofazLIB, new cjs.Rectangle(-131,-149,247,300), null);
 
 
 (lib.rabinLIB = function(mode,startPosition,loop) {
@@ -5113,6 +5113,23 @@ p.nominalBounds = new cjs.Rectangle(-90.6,-54,177.9,106.8);
 }).prototype = getMCSymbolPrototype(lib.daliLIB, new cjs.Rectangle(-150,-100.5,300,201), null);
 
 
+(lib.an_CSS = function(options) {
+	this._element = new $.an.CSS(options);
+	this._el = this._element.create();
+	var $this = this;
+	this.addEventListener('added', function() {
+		$this._lastAddedFrame = $this.parent.currentFrame;
+		$this._element.attach($('#dom_overlay_container'));
+	});
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,100,22);
+
+p._tick = _tick;
+p._handleDrawEnd = _handleDrawEnd;
+p._updateVisibility = _updateVisibility;
+
+
+
 (lib.Symbol1 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -7683,6 +7700,13 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
+	// actions
+	this.myCbStyle = new lib.an_CSS({'id': 'myCbStyle', 'href':'assets/myStyle.css'});
+
+	this.myCbStyle.setTransform(480.4,295.4,1,1,0,0,0,50,11);
+
+	this.timeline.addTween(cjs.Tween.get(this.myCbStyle).wait(1));
+
 	// Layer_7
 	this.bgMC = new lib.BGmc();
 	this.bgMC.name = "bgMC";
@@ -7702,12 +7726,13 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/treasureMapV14_atlas_.png?1517927041772", id:"treasureMapV14_atlas_"},
-		{src:"sounds/rightSound.mp3?1517927042806", id:"rightSound"},
-		{src:"sounds/wrongSoundwav.mp3?1517927042806", id:"wrongSoundwav"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1517927042806", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1517927042806", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1517927042806", id:"an.ComboBox"}
+		{src:"images/treasureMapV14_atlas_.png?1518023742458", id:"treasureMapV14_atlas_"},
+		{src:"sounds/rightSound.mp3?1518023743383", id:"rightSound"},
+		{src:"sounds/wrongSoundwav.mp3?1518023743383", id:"wrongSoundwav"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518023743383", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1518023743383", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/css.js?1518023743383", id:"an.CSS"},
+		{src:"components/ui/src/combobox.js?1518023743383", id:"an.ComboBox"}
 	],
 	preloads: []
 };
