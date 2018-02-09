@@ -6883,7 +6883,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 		var rndOption; //איזו תשובה מתוך האפשרויות
 		var mapPart; //מספר הפריים לאנימציית המפה
 		
-		var hasGame;
+		var hasGame; //האם מתקיים משחק
 		var playerJump; //האם השחקן קופץ
 		var playerBackMove; //האם השחקן סיים לקפוץ
 		var intersectCheck; //האם צריך לבצע בדיקות התנגשות
@@ -6898,7 +6898,6 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 		stage.enableMouseOver(frequency); //לייצור פעולה במעבר עכבר
 		
 		createjs.Ticker.addEventListener("tick", myTick); //מריץ את כל הבדיקות
-		window.addEventListener("keydown", keyFunc); //לחיצת מקשים
 		
 		//סאונד נכון - פריים 1
 		//סאונד טעות = פריים 51
@@ -6907,6 +6906,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 		stage.addChild(mySound); //הוספת הסאונד למשחק
 		
 		function preStartFunc() { //טעינת ערכים הדרושים לתחילת המשחק למשתנים המוגדרים כמשתנים גלובליים בכל תחילת משחק חדש
+			window.addEventListener("keydown", keyFunc); //זיהוי לחיצת מקשים - מתחדש בכל משחק
 			myGame = []; //הפריטים במשחק
 			myGameName = ""; //שם המשחק
 			rndTrueFalse = 0; //מיקום התשובה האם מתאים או לא מתאים
@@ -7082,24 +7082,25 @@ p.nominalBounds = new cjs.Rectangle(0,0,7995.4,699.1);
 			stage.addChild(playerLoad);
 			myPlayer = stage.getChildByName("myPlayer"); //שמירה של האובייקט בתוך משתנה גלובלי לשימוש בהמשך
 		
-			itemUpload(); //העלאת פריט ראשון
-		
-			hasGame = true; //התחיל משחק
 			selfHome.bgMC.gotoAndPlay(1); //הפעלת אנימציית רקע
-			createjs.Ticker.paused = false; //הפעלת כניסת תשובות
+			hasGame = true; //התחיל משחק
 			jumpCheck = true; //הפעלת בדיקה לקפיצה (לחיצה על רווח)
 			intersectCheck = true; //הפעלת בדיקת התנגשויות
+			itemUpload(); //העלאת פריט ראשון
 		
-			timer = setInterval(function () { //התחלת מדידת זמן משחק
-				gameTime++; //העלאת זמן המשחק ב 1 בכל שנייה
-			}, 1000);
+			var beforeGame = setTimeout(function () { //השהייה לפני תחילת משחק - זמן לקריאת ההוראות
+				createjs.Ticker.paused = false; //הפעלת כניסת תשובות
+				timer = setInterval(function () { //התחלת מדידת זמן משחק
+					gameTime++; //העלאת זמן המשחק ב 1 בכל שנייה
+				}, 1000);
+			}, 5000);
 		}
 		
 		function itemUpload() { //העלאת פריט
 			var itemHeightRND = Math.floor(Math.random() * itemHeight.length); //גובה רנדומלי לפריט מתוך מערך המכיל את הגבהים
 			var answerLoad = new lib.cardLIB(); //העלאת פריט (קלף לבן)
 			answerLoad.name = "myItem";
-			answerLoad.x = stageW + 60;
+			answerLoad.x = stageW + 110;
 			answerLoad.y = itemHeight[itemHeightRND]; //מיקום פריט על פי גובה רנדומלי
 			stage.addChild(answerLoad);
 			myAnswer = stage.getChildByName("myItem"); //שמירה של האובייקט בתוך משתנה גלובלי לשימוש בהמשך
@@ -7726,13 +7727,13 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/treasureMapV14_atlas_.png?1518023742458", id:"treasureMapV14_atlas_"},
-		{src:"sounds/rightSound.mp3?1518023743383", id:"rightSound"},
-		{src:"sounds/wrongSoundwav.mp3?1518023743383", id:"wrongSoundwav"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518023743383", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1518023743383", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/css.js?1518023743383", id:"an.CSS"},
-		{src:"components/ui/src/combobox.js?1518023743383", id:"an.ComboBox"}
+		{src:"images/treasureMapV14_atlas_.png?1518190614639", id:"treasureMapV14_atlas_"},
+		{src:"sounds/rightSound.mp3?1518190615566", id:"rightSound"},
+		{src:"sounds/wrongSoundwav.mp3?1518190615566", id:"wrongSoundwav"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1518190615566", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1518190615566", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/css.js?1518190615566", id:"an.CSS"},
+		{src:"components/ui/src/combobox.js?1518190615566", id:"an.ComboBox"}
 	],
 	preloads: []
 };
